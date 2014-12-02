@@ -10,7 +10,7 @@ base:
 
   # target glob to install sensu-server, sensu-api,
   # sensu-dashboard, rabbitmq-server, redis-server
-  'sensu-server*':
+  'CosmosMinion':
     - rabbitmq.server
     - redis.server
     - sensu.server
