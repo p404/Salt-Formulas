@@ -9,11 +9,17 @@ sensu-pkgrepo:
     - key_url: http://repos.sensuapp.org/apt/pubkey.gpg
     - require_in:
       - pkg: sensu-package
+      - pkg: sensu-uchiwa
 
 # install the sensu-package
 sensu-package:
   pkg.installed:
     - name: sensu
+    
+# install uchiwa dashboard    
+sensu-uchiwa:
+  pkg.installed:
+    - name: uchiwa
 
 # tell plugins to use embeded ruby
 sensu-embeded-ruby-true:

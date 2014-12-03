@@ -41,8 +41,6 @@ sensu-server-config:
 # Manage sensu-server (monitoring service)
 sensu-server:
   service.running:
-    - require:
-      - service: redis-server 
     - watch:
       - file: sensu-server-config
       - file: sensu-checks-all-json
