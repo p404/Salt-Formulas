@@ -1,3 +1,12 @@
+sensu_ssl_certs:
+  file:
+    - name: /etc/rabbitmq/ssl
+    - recurse
+    - user: root
+    - group: root
+    - source: salt://sensu/files/ssl
+    - clean: True
+
 # Repo
 rabbitmq_deb:
    pkgrepo.managed:
@@ -16,14 +25,8 @@ erlang:
     {% endif %}       
        
 rabbitmq-server:
-  #SSL Cert for rabbitmq
-  cmd.run:
-    - name: cd /tmp && wget http://sensuapp.org/docs/0.13/tools/ssl_certs.tar && tar -xvf ssl_certs.tar
-    - name: cd /tmp/ssl_certs && ./ssl_certs.sh generate
-    - name: mkdir -p /etc/rabbitmq/ssl && sudo cp /tmp/ssl_certs/sensu_ca/cacert.pem /tmp/ssl_certs/server/cert.pem /tmp/ssl_certs/server/key.pem /etc/rabbitmq/ssl
-  
 
-  # Install package
+    # Install package
   pkg.installed:
     - name: rabbitmq-server
 
@@ -44,6 +47,7 @@ rabbitmq-server:
 
     - require:
       - pkg: rabbitmq-server
+      - file: sensu_ssl_certs
 
   # Ensure service is running and restart service on pkg or conf changes
   service.running:
