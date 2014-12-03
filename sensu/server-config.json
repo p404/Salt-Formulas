@@ -1,8 +1,8 @@
 {
   "rabbitmq": {
     "ssl": {
-          "cert_chain_file": "/etc/sensu/ssl/cert.pem",
-          "private_key_file": "/etc/sensu/ssl/key.pem"
+          "cert_chain_file": "/etc/rabbitmq/ssl/cert.pem",
+          "private_key_file": "/etc/rabbitmq/ssl/key.pem"
         },
     "host": "localhost",
     "port": 5672,
