@@ -7,16 +7,14 @@ sensu-rabbitmq-vhost:
   cmd.run:
     - name: rabbitmqctl add_vhost /sensu
     - unless: rabbitmqctl list_vhosts | grep -q /sensu
-    - require:
-      - service: rabbitmq-server 
+
 
 # Manage RabbitMQ Sensu user
 sensu-rabbitmq-user:
   cmd.run:
     - name: rabbitmqctl add_user sensu mypass
     - unless: rabbitmqctl list_users | grep -q sensu
-    - require:
-      - service: rabbitmq-server 
+ 
 
 # Manage RabbitMQ Sensu permissions
 sensu-rabbitmq-permissions:
