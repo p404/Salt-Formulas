@@ -1,6 +1,11 @@
 curl:
   pkg:
     - installed
+    
+gpg-import-D39DC0E3:
+  cmd.run:
+    - name: gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3; echo '409B6B1796C275462A1703113804BB82D39DC0E3:4:' |gpg --import-ownertrust
+    - unless: gpg --fingerprint |fgrep 'Key fingerprint = 409B 6B17 96C2 7546 2A17  0311 3804 BB82 D39D C0E3'    
 
 rvm:
   cmd:
