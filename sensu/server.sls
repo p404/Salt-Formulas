@@ -31,15 +31,18 @@ sensu-server-config:
   file.managed:
     - name: /etc/sensu/conf.d/config.json
     - source: salt://sensu/server-config.json
-    
+       
     - require:
       - pkg: sensu-package
-            
-    service.running:
-      - name: sensu-server
-      - name: rabbitmq-server
-      - name: redis-server
-      - name: sensu-api
-      - name: sensu-client
-      - name: uchiwa
       
+      
+# ensure services are running
+  service.running:
+    - name: sensu-server
+    - name: rabbitmq-server
+    - name: redis-server
+    - name: sensu-api
+    - name: sensu-client
+    - name: uchiwa    
+            
+ 
