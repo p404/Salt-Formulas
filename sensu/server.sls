@@ -34,7 +34,23 @@ sensu-server-config:
        
     - require:
       - pkg: sensu-package
+    
+    - watch_in:
+      - service: sensu-server
       
+
+#Uchiwa server config
+uchiwa-server.config:
+  file.managed:
+    - name: /etc/sensu/conf.d/uchiwa.json
+    - source: salt://sensu/uchiwa-config.json
+       
+    - require:
+      - pkg: sensu-package
+    
+    - watch_in:
+      - service: sensu-server
+
       
 # ensure services are running
   service.running:

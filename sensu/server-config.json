@@ -18,21 +18,10 @@
     "host": "localhost",
     "port": 4567
   },
-  "dashboard": {
+  "uchiwa": {
     "port": 8080,
     "user": "admin",
-    "password": "secret"
-  },
-  "handlers": {
-    "default": {
-      "type": "set",
-      "handlers": [
-        "stdout"
-      ]
-    },
-    "stdout": {
-      "type": "pipe",
-      "command": "cat"
-    }
+    "password": "secret",
+    "refresh": 10000
   }
 }
