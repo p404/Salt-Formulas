@@ -17,11 +17,5 @@
   "api": {
     "host": "localhost",
     "port": 4567
-  },
-  "uchiwa": {
-    "port": 8080,
-    "user": "admin",
-    "password": "secret",
-    "refresh": 10000
   }
 }
