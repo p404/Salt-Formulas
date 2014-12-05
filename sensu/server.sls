@@ -42,14 +42,14 @@ sensu-server-config:
 #Uchiwa server config
 uchiwa-server.config:
   file.managed:
-    - name: /etc/sensu/conf.d/uchiwa.json
+    - name: /etc/sensu/uchiwa.json
     - source: salt://sensu/uchiwa-config.json
        
     - require:
-      - pkg: sensu-package
+      - pkg: uchiwa
     
     - watch_in:
-      - service: sensu-server
+      - service: uchiwa
 
       
 # ensure services are running
