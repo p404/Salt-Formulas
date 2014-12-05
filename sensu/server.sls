@@ -33,8 +33,7 @@ sensu-rabbitmq-permissions:
 # Manage Sensu server configuration file
 sensu-server-config:
   file.managed:
-    - name: /etc/sensu/config.json
+    - name: /etc/sensu/conf.d/config.json
     - source: salt://sensu/server-config.json
     - require:
       - pkg: sensu-package
-
