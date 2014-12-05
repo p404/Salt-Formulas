@@ -1,6 +1,13 @@
-# include all common sensu configuration
+# Include all common sensu configuration
 include:
   - sensu.common
+
+# Checks that all monitor server run
+sensu-checks-master-json:
+  file.managed:
+    - name: /etc/sensu/conf.d/checks-master.json
+    - source: salt://sensu/checks-master.json
+    - template: jinja  
 
 # Manage RabbitMQ Sensu vhost
 sensu-rabbitmq-vhost:
@@ -50,9 +57,10 @@ sensu-uchiwa-config:
     
     - watch_in:
       - service: uchiwa
+      - service: sensu-api
 
       
-# ensure services are running
+# Ensure services are running
   service.running:
     - name: sensu-server
     - name: rabbitmq-server

@@ -10,8 +10,9 @@
         }
     ],
     "uchiwa": {
-        "port": 3000,
+        "port": 8080,
         "stats": 10,
         "refresh": 10000
     }
 }
+
