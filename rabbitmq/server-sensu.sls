@@ -26,7 +26,7 @@ erlang:
        
 rabbitmq-server:
 
-    # Install package
+  # Install package
   pkg.installed:
     - name: rabbitmq-server
 
