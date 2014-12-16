@@ -109,6 +109,9 @@ elastic_conf:
     - name: '/etc/elasticsearch/elasticsearch.yml'
     - contents: |+
           network.bind_host: {{ bind_host }}
+          http.cors.allow-origin: "/.*/"
+          http.cors.enabled: true
+          
     - mode: 644
     - require:
       - file: elasticsearch_repo
@@ -160,6 +163,5 @@ nginx_static_site:
     - context:
        kibana_port: {{ kibana_port }}
        server_name: {{ server_name }}
-       kibana_wwwroot: {{ kibana_wwwroot }}
        kibana_root: {{ kibana_root }}
 
