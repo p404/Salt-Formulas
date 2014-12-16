@@ -87,21 +87,22 @@ nginx_sites_dir:
     - name: /etc/nginx/sites-enabled
     - makedirs: True
 
+kibana:
+  archive:
+    - extracted
+    - name: {{ kibana_wwwroot }}
+    - source: https://download.elasticsearch.org/kibana/kibana/kibana-3.1.2.tar.gz
+    - source_hash: md5=eeded13255f154eaeceb4cf83105e4b4
+    - archive_format: tar    
+
 kibana_config_js:
   file.managed:
-    - name: '{{ kibana_wwwroot }}/config.js'
+    - name: '{{ kibana_root }}/config.js'
     - template: jinja
     - source: salt://kibana/config.js
     - context:
        kibana_port: {{ kibana_port }}
        bind_host: {{ bind_host }}
-
-elastic_htpasswd:
-  file.managed:
-    - name: {{ elastic_htpasswd_file }}
-    - contents_pillar: elastic:htpasswd
-    - group: www-data
-    - mode: 640
 
 elastic_conf:
   file.managed:
@@ -141,7 +142,6 @@ nginx_static_site:
     - require:
       - file: nginx_sites_dir
       - file: kibana_static_dir
-      - file: elastic_htpasswd
 
   service.running:
     - name: nginx
@@ -161,14 +161,5 @@ nginx_static_site:
        kibana_port: {{ kibana_port }}
        server_name: {{ server_name }}
        kibana_wwwroot: {{ kibana_wwwroot }}
-       elastic_htpasswd_file: {{ elastic_htpasswd_file }}
+       kibana_root: {{ kibana_root }}
 
-kibana:
-  archive.extracted:
-    - name: {{ kibana_wwwroot }}
-    - source: https://download.elasticsearch.org/kibana/kibana/kibana-3.0.1.tar.gz
-    - archive_format: tar
-    - tar_options: xf
-
-# TODO:
-# * point config.js to port {{ kibana_port }} and not port 9200
