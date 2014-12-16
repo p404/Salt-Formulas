@@ -59,7 +59,6 @@ elastic_repos_key:
 {% set wwwhome = salt['pillar.get']('kibana:wwwhome', '/var/www') %}
 {% set kibana_wwwroot = wwwhome + '/' + server_name + '/' %}
 {% set kibana_root = kibana_wwwroot + '/' + 'kibana-3.1.2' + '/' %}
-{% set elastic_htpasswd_file = '/etc/nginx/elastic_passwd' %}
 {% set bind_host = salt['pillar.get']('kibana:bind_host', '127.0.0.1') %}
 
 
