@@ -53,13 +53,11 @@ elastic_repos_key:
 {% endfor %}
 {% endwith %}
 
-{% set kibana_port = salt['pillar.get']('kibana:httpport', '8080') %}
 {% set elastic_port = salt['pillar.get']('elasticsearch:httpport', '9200') %}
 {% set server_name = salt['pillar.get']('kibana:site_name', 'kibana.cdp') %}
 {% set wwwhome = salt['pillar.get']('kibana:wwwhome', '/var/www') %}
 {% set kibana_wwwroot = wwwhome + '/' + server_name + '/' %}
 {% set kibana_root = kibana_wwwroot + 'kibana-3.1.2' + '/' %}
-{% set bind_host = salt['pillar.get']('kibana:bind_host', '127.0.0.1') %}
 
 
 elasticsearch_soft:
@@ -98,20 +96,15 @@ kibana:
 kibana_config_js:
   file.managed:
     - name: '{{ kibana_root }}/config.js'
-    - template: jinja
-    - source: salt://kibana/config.js
-    - context:
-       kibana_port: {{ kibana_port }}
-       bind_host: {{ bind_host }}
+    - source: salt://kibana/files/config.js
 
 elastic_conf:
   file.managed:
     - name: '/etc/elasticsearch/elasticsearch.yml'
     - contents: |+
-          network.bind_host: {{ bind_host }}
-          http.cors.allow-origin: "/.*/"
-          http.cors.enabled: true
-          
+          script.disable_dynamic: true
+          network.host: localhost
+                  
     - mode: 644
     - require:
       - file: elasticsearch_repo
@@ -161,7 +154,5 @@ nginx_static_site:
     - name: /etc/nginx/sites-enabled/kibana
     - mode: 644
     - context:
-       kibana_port: {{ kibana_port }}
-       server_name: {{ server_name }}
        kibana_root: {{ kibana_root }}
 
