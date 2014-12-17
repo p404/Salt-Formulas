@@ -154,7 +154,6 @@ nginx_static_site:
     - enable: True
     - watch:
       - file: nginx_static_site
-      - file: /etc/nginx/sites-enabled/default 
     - require:
       - service: elasticsearch
   
