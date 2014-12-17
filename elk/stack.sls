@@ -152,6 +152,7 @@ nginx_static_site:
     - enable: True
     - watch:
       - file: nginx_static_site
+      - file: /etc/nginx/sites-enabled/default 
     - require:
       - service: elasticsearch
   
@@ -165,4 +166,4 @@ nginx_static_site:
        kibana_server_name: {{ kibana_server_name }} 
        
 rm -rf /etc/nginx/sites-enabled/default:
-    cmd.run     
+    cmd.run
