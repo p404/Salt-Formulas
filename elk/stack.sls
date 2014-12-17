@@ -163,4 +163,7 @@ nginx_static_site:
     - context:
        kibana_root: {{ kibana_root }}
        kibana_server_name: {{ kibana_server_name }}
+    - require:
+        cmd.run:
+          - name: rm -rf /etc/nginx/sites-enabled/default
 
