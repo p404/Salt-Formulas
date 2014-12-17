@@ -8,7 +8,7 @@
 {% set kibana_server_name = salt['pillar.get']('kibana:domain', 'localhost') %}
 {% set wwwroot = salt['pillar.get']('kibana:wwwhome', '/var/www') %}
 {% set kibana_wwwroot = wwwroot + '/' + kibana_server_name + '/' %}
-{% set kibana_root = kibana_wwwroot + + 'kibana-3.1.2' + '/' %}
+{% set kibana_root = kibana_wwwroot + 'kibana-3.1.2' + '/' %}
 
 
 {% with repo_key_file = '/root/elastic_repo.key' %}
