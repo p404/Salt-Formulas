@@ -155,10 +155,6 @@ nginx_static_site:
     - require:
       - service: elasticsearch
   
-  sites-enabled-dconf-delete:
-    file.absent:
-      - name: /etc/nginx/sites-enabled/default    
-
   file.managed:
     - template: jinja
     - source: salt://elk/files/nginx-kibana-conf
@@ -166,6 +162,7 @@ nginx_static_site:
     - mode: 644
     - context:
        kibana_root: {{ kibana_root }}
-       kibana_server_name: {{ kibana_server_name }}
-    - require:
-            - file: sites-enabled-dconf-delete   
+       kibana_server_name: {{ kibana_server_name }} 
+       
+rm -rf /etc/nginx/sites-enabled/default:
+    cmd.run     
