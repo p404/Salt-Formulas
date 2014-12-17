@@ -91,7 +91,7 @@ nginx_sites_dir:
   file.directory:
     - name: /etc/nginx/sites-enabled
     - makedirs: True
-  cmd.run
+  cmd.run:
     - name: rm -rf /etc/nginx/sites-enabled/default
 
 kibana:
