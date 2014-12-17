@@ -1,3 +1,15 @@
+##############################################################################
+# stack.sls
+#
+# Elk Stack Formula
+# ElasticSearch + Logstash + (Kibana + Nginx conf)
+##############################################################################
+
+{% set kibana_domain = salt['pillar.get']('kibana:domain', 'localhost') %}
+{% set kibana_wwwroot = salt['pillar.get']('kibana:wwwhome', '/var/www/') %}
+{% set kibana_root = kibana_wwwroot + 'kibana-3.1.2' + '/' %}
+
+
 {% with repo_key_file = '/root/elastic_repo.key' %}
 elastic_repos_key:
   file.managed:
@@ -53,12 +65,6 @@ elastic_repos_key:
 {% endfor %}
 {% endwith %}
 
-{% set elastic_port = salt['pillar.get']('elasticsearch:httpport', '9200') %}
-{% set server_name = salt['pillar.get']('kibana:site_name', 'kibana.cdp') %}
-{% set wwwhome = salt['pillar.get']('kibana:wwwhome', '/var/www') %}
-{% set kibana_wwwroot = wwwhome + '/' + server_name + '/' %}
-{% set kibana_root = kibana_wwwroot + 'kibana-3.1.2' + '/' %}
-
 
 elasticsearch_soft:
   pkg.installed:
@@ -96,7 +102,7 @@ kibana:
 kibana_config_js:
   file.managed:
     - name: '{{ kibana_root }}/config.js'
-    - source: salt://kibana/files/config.js
+    - source: salt://elk/files/config.js
 
 elastic_conf:
   file.managed:
@@ -150,9 +156,10 @@ nginx_static_site:
 
   file.managed:
     - template: jinja
-    - source: salt://kibana/nginx_kibana_site
+    - source: salt://elk/files/nginx-kibana-conf
     - name: /etc/nginx/sites-enabled/kibana
     - mode: 644
     - context:
        kibana_root: {{ kibana_root }}
+       kibana_domain: {{ kibana_domain }}
 

@@ -1,11 +1,15 @@
+##############################################################################
 # top.sls
 #
 # Definition state.highstate
-# Base and MonitorServer
+# Base and OpServer
+##############################################################################
+
 base:
   '*':
     - git
-  'CosmosMinion*':
+  'OpServer*':
+    - elk.stack
     - rabbitmq.server-sensu
     - redis.server
     - sensu.server
