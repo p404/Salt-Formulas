@@ -5,9 +5,10 @@
 # ElasticSearch + Logstash + (Kibana + Nginx conf)
 ##############################################################################
 
-{% set kibana_domain = salt['pillar.get']('kibana:domain', 'localhost') %}
-{% set kibana_wwwroot = salt['pillar.get']('kibana:wwwhome', '/var/www/') %}
-{% set kibana_root = kibana_wwwroot + 'kibana-3.1.2' + '/' %}
+{% set kibana_server_name = salt['pillar.get']('kibana:domain', 'localhost') %}
+{% set wwwroot = salt['pillar.get']('kibana:wwwhome', '/var/www') %}
+{% set kibana_wwwroot = wwwroot + '/' + kibana_server_name + '/' %}
+{% set kibana_root = kibana_wwwroot + + 'kibana-3.1.2' + '/' %}
 
 
 {% with repo_key_file = '/root/elastic_repo.key' %}
@@ -101,7 +102,7 @@ kibana:
 
 kibana_config_js:
   file.managed:
-    - name: '{{ kibana_root }}/config.js'
+    - name: '{{ kibana_root }}config.js'
     - source: salt://elk/files/config.js
 
 elastic_conf:
@@ -161,5 +162,5 @@ nginx_static_site:
     - mode: 644
     - context:
        kibana_root: {{ kibana_root }}
-       kibana_domain: {{ kibana_domain }}
+       kibana_server_name: {{ kibana_server_name }}
 

@@ -1,17 +1,18 @@
+##############################################################################
+# kibana.conf
 #
-# Kibana Virtual Host Proxy pass
-# TODO
-# TODO
-# TODO
-#
+# Virtual Host
+# 
+##############################################################################
+
 server {
   listen                *:80 ;
 
-  server_name           {{kibana_domain}};
+  server_name           {{kibana_server_name}};
   access_log            /var/log/nginx/kibana.access.log;
 
   location / {
-    root {{ kibana_wwwroot }};
+    root {{ kibana_root }};
     autoindex on;
   }
 
