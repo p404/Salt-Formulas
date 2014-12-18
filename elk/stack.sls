@@ -91,8 +91,6 @@ nginx_sites_dir:
   file.directory:
     - name: /etc/nginx/sites-enabled
     - makedirs: True
-  cmd.run:
-    - name: rm -rf /etc/nginx/sites-enabled/default
 
 kibana:
   archive:
@@ -164,5 +162,13 @@ nginx_static_site:
     - mode: 644
     - context:
        kibana_root: {{ kibana_root }}
-       kibana_server_name: {{ kibana_server_name }} 
+       kibana_server_name: {{ kibana_server_name }}
        
+nginx_delete_conf:
+  file.absent:
+    - name: '/etc/nginx/sites-enabled/default'
+    
+  service.running:
+    - name: nginx
+    - reload: True
+    - enable: True
