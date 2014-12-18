@@ -167,8 +167,5 @@ nginx_static_site:
 nginx_delete_conf:
   file.absent:
     - name: '/etc/nginx/sites-enabled/default'
-    
-  service.running:
-    - name: nginx
-    - reload: True
-    - enable: True
+  require_in:
+    - file: nginx_sites_dir 
