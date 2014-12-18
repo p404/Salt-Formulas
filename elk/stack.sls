@@ -152,6 +152,7 @@ nginx_static_site:
     - enable: True
     - watch:
       - file: nginx_static_site
+      - file: nginx_delete_conf
     - require:
       - service: elasticsearch
   
@@ -167,5 +168,4 @@ nginx_static_site:
 nginx_delete_conf:
   file.absent:
     - name: '/etc/nginx/sites-enabled/default'
-    - require_in:
-        - nginx_sites_dir 
+ 
