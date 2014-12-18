@@ -63,19 +63,12 @@ sensu-uchiwa-config:
        
     - require:
       - pkg: uchiwa
+      - file: nginx_conf_uchiwa
       - file: nginx_sites_dir
     
     - watch_in:
       - service: uchiwa
-      - service: sensu-api
-
-  file.managed:
-    - template: jinja
-    - source: salt://sensu/files/nginx-uchiwa-conf
-    - name: /etc/nginx/sites-enabled/uchiwa
-    - mode: 644
-    - context:
-       uchiwa_server_name: {{ uchiwa_server_name }}  
+      - service: sensu-api 
 
       
 # Ensure services are running
@@ -86,7 +79,18 @@ sensu-uchiwa-config:
     - name: sensu-api
     - name: sensu-client
     - name: uchiwa
+
+#Nginx conf
   
+nginx_conf_uchiwa: 
+  file.managed:
+    - template: jinja
+    - source: salt://sensu/files/nginx-uchiwa-conf
+    - name: /etc/nginx/sites-enabled/uchiwa
+    - mode: 644
+    - context:
+       uchiwa_server_name: {{ uchiwa_server_name }} 
+
 
 nginx_sites_dir:
   file.directory:
