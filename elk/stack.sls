@@ -5,7 +5,7 @@
 # ElasticSearch + Logstash + (Kibana + Nginx conf)
 ##############################################################################
 
-{% set kibana_server_name = salt['pillar.get']('kibana:domain', 'localhost') %}
+{% set kibana_server_name = salt['pillar.get']('kibana:domain', 'logs.4talent.cl') %}
 {% set wwwroot = salt['pillar.get']('kibana:wwwhome', '/var/www') %}
 {% set kibana_wwwroot = wwwroot + '/' + kibana_server_name + '/' %}
 {% set kibana_root = kibana_wwwroot + 'kibana-3.1.2' + '/' %}

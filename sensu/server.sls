@@ -1,3 +1,12 @@
+##############################################################################
+# server.sls
+#
+# Sensu Server Formula
+# Sensu + Sensu client + Sensu API + (Uchiwa + Nginx conf)
+##############################################################################
+
+{% set uchiwa_server_name = salt['pillar.get']('uchiwa:domain', 'monitor.4talent.cl') %}
+
 # Include all common sensu configuration
 include:
   - sensu.common
@@ -46,7 +55,7 @@ sensu-server-config:
       - service: sensu-server
       
 
-#Uchiwa server config
+#Uchiwa server config + nginx
 sensu-uchiwa-config:
   file.managed:
     - name: /etc/sensu/uchiwa.json
@@ -54,10 +63,19 @@ sensu-uchiwa-config:
        
     - require:
       - pkg: uchiwa
+      - file: nginx_sites_dir
     
     - watch_in:
       - service: uchiwa
       - service: sensu-api
+
+  file.managed:
+    - template: jinja
+    - source: salt://sensu/files/nginx-uchiwa-conf
+    - name: /etc/nginx/sites-enabled/uchiwa
+    - mode: 644
+    - context:
+       uchiwa_server_name: {{ uchiwa_server_name }}  
 
       
 # Ensure services are running
@@ -67,6 +85,10 @@ sensu-uchiwa-config:
     - name: redis-server
     - name: sensu-api
     - name: sensu-client
-    - name: uchiwa    
-            
- 
+    - name: uchiwa
+  
+
+nginx_sites_dir:
+  file.directory:
+    - name: /etc/nginx/sites-enabled
+    - makedirs: True
