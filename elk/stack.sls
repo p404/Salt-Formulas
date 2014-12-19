@@ -95,11 +95,6 @@ kibana_static_dir:
     - group: www-data
     - makedirs: True
 
-nginx_sites_dir:
-  file.directory:
-    - name: /etc/nginx/sites-enabled
-    - makedirs: True
-
 kibana:
   archive:
     - extracted
@@ -151,7 +146,6 @@ nginx_static_site:
   pkg.installed:
     - name: nginx
     - require:
-      - file: nginx_sites_dir
       - file: kibana_static_dir
 
   service.running:

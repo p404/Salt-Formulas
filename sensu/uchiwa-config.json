@@ -1,7 +1,7 @@
 {
     "sensu": [
         {
-            "name": "MonitorServer",
+            "name": "OpServer",
             "host": "localhost",
             "ssl": false,
             "port": 4567,

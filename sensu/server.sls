@@ -66,7 +66,6 @@ sensu-uchiwa-config:
     - require:
       - pkg: uchiwa
       - file: nginx_conf_uchiwa
-      - file: nginx_sites_dir
     
     - watch_in:
       - service: uchiwa
@@ -92,9 +91,3 @@ nginx_conf_uchiwa:
     - mode: 644
     - context:
        uchiwa_server_name: {{ uchiwa_server_name }} 
-
-
-nginx_sites_dir:
-  file.directory:
-    - name: /etc/nginx/sites-enabled
-    - makedirs: True
