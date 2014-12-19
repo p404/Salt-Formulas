@@ -12,7 +12,7 @@ base:
     - git
   'OpServer*':
     - nginx.server
-    - elk.stack
     - rabbitmq.server-sensu
     - redis.server
     - sensu.server
+    - elk.stack
