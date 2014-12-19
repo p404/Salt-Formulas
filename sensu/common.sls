@@ -27,3 +27,30 @@ sensu-embeded-ruby-true:
   - name: /etc/default/sensu
   - pattern: EMBEDDED_RUBY=false
   - repl: EMBEDDED_RUBY=true
+  
+# Update run commands  
+update_rc.d-server:
+  cmd.run:
+    - name: update-rc.d sensu-server defaults
+    - require:
+      - pkg: sensu-package
+        
+update_rc.d-api:
+  cmd.run:
+    - name: update-rc.d sensu-api defaults
+    - require:
+      - pkg: sensu-package
+    
+update_rc.d-client:
+  cmd.run:
+    - name: update-rc.d sensu-client defaults
+    - require:
+      - pkg: sensu-package
+    
+update_rc.d-uchiwa:
+  cmd.run:
+    - name: update-rc.d sensu-uchiwa defaults
+    - require:
+      - pkg: uchiwa
+
+  
