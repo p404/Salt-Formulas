@@ -76,8 +76,6 @@ elastic_conf:
           network.host: localhost
                   
     - mode: 644
-    - require:
-      - file: elasticsearch_repo
 
 elastic_service:
   pkg.installed:
@@ -96,7 +94,6 @@ logstash_service:
   pkg.installed:
   - name: logstash
   - require:
-    - file: logstash_repo
     - service: elasticsearch
   service.running:
     - name: logstash
