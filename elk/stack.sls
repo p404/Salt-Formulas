@@ -75,6 +75,12 @@ elasticsearch_soft:
     - require:
       - file: elasticsearch_repo
 
+update_rc.d-elasticsearch:
+  cmd.run:
+    - name: update-rc.d elasticsearch defaults 95 10
+    - require:
+      - pkg: elasticsearch
+
 logstash_soft:
   pkg.installed:
     - name: logstash
