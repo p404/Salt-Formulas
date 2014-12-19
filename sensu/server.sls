@@ -3,6 +3,8 @@
 #
 # Sensu Server Formula
 # Sensu + Sensu client + Sensu API + (Uchiwa + Nginx conf)
+#
+# Pablo Opazo <pablo@sequel.ninja>
 ##############################################################################
 
 {% set uchiwa_server_name = salt['pillar.get']('uchiwa:domain', 'monitor.4talent.cl') %}

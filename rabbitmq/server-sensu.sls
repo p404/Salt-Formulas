@@ -1,3 +1,12 @@
+##############################################################################
+# server-sensu.sls
+#
+# Rabbitmq
+# Rabbitmq install + sensu configuration
+#
+# Pablo Opazo <pablo@sequel.ninja>
+##############################################################################
+
 sensu_ssl_certs:
   file:
     - name: /etc/rabbitmq/ssl

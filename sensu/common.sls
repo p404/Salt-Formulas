@@ -1,3 +1,11 @@
+##############################################################################
+# common.sls
+#
+# Sensu Server Formula
+#
+# Pablo Opazo <pablo@sequel.ninja>
+##############################################################################
+
 # configure the sensu repo
 sensu-pkgrepo:
   pkgrepo.managed:
@@ -49,7 +57,7 @@ update_rc.d-client:
     
 update_rc.d-uchiwa:
   cmd.run:
-    - name: update-rc.d sensu-uchiwa defaults
+    - name: update-rc.d uchiwa defaults
     - require:
       - pkg: uchiwa
 

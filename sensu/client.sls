@@ -1,3 +1,12 @@
+##############################################################################
+# client.sls
+#
+# Sensu Formula
+# Sensu Client + Checks and Handlers
+#
+# Pablo Opazo <pablo@sequel.ninja>
+##############################################################################
+
 # Include all common sensu configuration
 include:
   - sensu.common

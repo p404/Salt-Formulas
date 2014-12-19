@@ -3,6 +3,8 @@
 #
 # Elk Stack Formula
 # ElasticSearch + Logstash + (Kibana + Nginx conf)
+#
+# Pablo Opazo <pablo@sequel.ninja>
 ##############################################################################
 
 {% set kibana_server_name = salt['pillar.get']('kibana:domain', 'logs.4talent.cl') %}

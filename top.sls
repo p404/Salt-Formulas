@@ -3,6 +3,8 @@
 #
 # Definition state.highstate
 # Base and OpServer
+#
+# Pablo Opazo <pablo@sequel.ninja>
 ##############################################################################
 
 base:
