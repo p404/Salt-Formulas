@@ -11,6 +11,7 @@ base:
   '*':
     - git
   'OpServer*':
+    - java
     - nginx.server
     - rabbitmq.server-sensu
     - redis.server
