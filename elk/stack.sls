@@ -73,8 +73,7 @@ elastic_conf:
     - name: '/etc/elasticsearch/elasticsearch.yml'
     - contents: |+
           script.disable_dynamic: true
-          network.host: localhost
-                  
+          network.host: localhost               
     - mode: 644
 
 elastic_service:
