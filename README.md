@@ -1,5 +1,5 @@
-##Salt-Formulas [Salt](http://www.saltstack.com/community/)
-This repository contains my own and collected salt formulas from the web.
+##[Salt](http://www.saltstack.com/community/)-Formulas 
+This repository contains my own salt formulas and others collected from the web. 
 
   * Certificate Authority generation 
   * Elk Stack
