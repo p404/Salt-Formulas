@@ -45,6 +45,7 @@ cert_csr_g:
 ca-signed_cert_g:
   module.run:
     - name: tls.create_ca_signed_cert
+    - ca_name: {{ grains['fqdn'] }}-ca
     - tls_dir: 'OpServer'
     - bits: 2048
     - days: 365 
