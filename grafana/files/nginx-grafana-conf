@@ -1,0 +1,18 @@
+##############################################################################
+# grafana.conf
+#
+# Virtual Host
+# 
+##############################################################################
+
+server {
+  listen                *:80 ;
+
+  server_name           {{grafana_server_name}};
+  access_log            /var/log/nginx/grafana.access.log;
+
+  location / {
+    root {{ grafana_root }};
+    autoindex on;
+  }
+}

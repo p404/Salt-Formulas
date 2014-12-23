@@ -19,3 +19,8 @@ If you have any questions about this salt formulas, please feel free to drop me 
 - Refactor and use pillars.
 - Generate the SSL cert ca self signed from salt module.
   - Execution of this on a salt state
+  
+  
+####Issues
+* Elk formula not working properly(random bug ordening states).
+* Sensu conf needs debugging.
