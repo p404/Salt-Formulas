@@ -46,9 +46,9 @@ rabbitmq-server:
           [
               {rabbit, [
               {ssl_listeners, [5671]},
-              {ssl_options, [{cacertfile,"/etc/rabbitmq/ssl/cacert.pem"},
-                             {certfile,"/etc/rabbitmq/ssl/cert.pem"},
-                             {keyfile,"/etc/rabbitmq/ssl/key.pem"},
+              {ssl_options, [{cacertfile,"/etc/pki/{{ grains['fqdn'] }}-ca/{{ grains['fqdn'] }}-ca_ca_cert.crt"},
+                             {certfile,"/etc/pki/{{ grains['fqdn'] }}-ca/certs/{{ grains['fqdn'] }}.crt"},
+                             {keyfile,"/etc/pki/{{ grains['fqdn'] }}-ca/certs/{{ grains['fqdn'] }}.key"},
                              {verify,verify_peer},
                              {fail_if_no_peer_cert,true}]}
             ]}

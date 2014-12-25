@@ -1,8 +1,8 @@
 {
   "rabbitmq": {
     "ssl": {
-          "cert_chain_file": "/etc/rabbitmq/ssl/cert.pem",
-          "private_key_file": "/etc/rabbitmq/ssl/key.pem"
+          "cert_chain_file": "/etc/pki/{{ grains['fqdn'] }}-ca/certs/{{ grains['fqdn'] }}.crt",
+          "private_key_file": "/etc/pki/{{ grains['fqdn'] }}-ca/certs/{{ grains['fqdn'] }}.key"
         },
     "host": "localhost",
     "port": 5672,
@@ -17,5 +17,10 @@
   "api": {
     "host": "localhost",
     "port": 4567
-  }
+  },
+  "client": {
+      "name": "{{ grains['fqdn'] }}-Monitor",
+      "address": "localhost",
+      "subscriptions": [ "ALL" ]
+    }
 }
