@@ -47,6 +47,7 @@ sensu-rabbitmq-permissions:
 # Manage Sensu server configuration file
 sensu-server-config:
   file.managed:
+    - template: jinja
     - name: /etc/sensu/conf.d/config.json
     - source: salt://sensu/server-config.json
        

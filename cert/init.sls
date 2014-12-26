@@ -25,9 +25,6 @@ ca_cert_g:
     - emailAddress: 'dev@4talent.cl'
     - cacert_path: '/etc/pki'
     - digest: sha256
-  file.copy:
-    - name: /srv/cert/files/cacert.crt 
-    - source: /etc/pki/{{ grains['fqdn'] }}-ca/certs/{{ grains['fqdn'] }}.crt
 
 cert_csr_g:
   module.run:
