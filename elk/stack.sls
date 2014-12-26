@@ -128,21 +128,23 @@ nginx_delete_conf:
   file.absent:
     - name: '/etc/nginx/sites-enabled/default'
     
-lumberjack_confd:
+lumberjack_input_confd:
   file.managed:
     - template: jinja
     - name: '{{ logstash_config_root }}lumberjack-input.conf'
     - source: salt://elk/files/lumberjack-input.conf
     - require_in:
       - pkg: logstash_soft
-         
+
+lumberjack_output_confd:         
   file.managed:
     - template: jinja
     - name: '{{ logstash_config_root }}lumberjack-output.conf'
     - source: salt://elk/files/lumberjack-output.conf
     - require_in:
       - pkg: logstash_soft
-  
+
+lumberjack_filter_confd:           
   file.recurse:
     - name: '{{ logstash_config_root }}l'
     - source: salt://elk/files/filters
