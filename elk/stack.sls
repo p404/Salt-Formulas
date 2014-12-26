@@ -11,6 +11,7 @@
 {% set wwwroot = salt['pillar.get']('kibana:wwwhome', '/var/www') %}
 {% set kibana_wwwroot = wwwroot + '/' + kibana_server_name + '/' %}
 {% set kibana_root = kibana_wwwroot + 'kibana-3.1.2' + '/' %}
+{% set logstash_config_root = salt['pillar.get']('logstash:root', '/etc/logstash/conf.d/') %}
 
 logstash_repo:
   pkgrepo.managed:
@@ -126,4 +127,25 @@ nginx_static_site:
 nginx_delete_conf:
   file.absent:
     - name: '/etc/nginx/sites-enabled/default'
- 
+    
+lumberjack_confd:
+  file.managed:
+    - template: jinja
+    - name: '{{ logstash_config_root }}lumberjack-input.conf'
+    - source: salt://elk/files/lumberjack-input.conf
+    - require_in:
+      - pkg: logstash_soft
+         
+  file.managed:
+    - template: jinja
+    - name: '{{ logstash_config_root }}lumberjack-output.conf'
+    - source: salt://elk/files/lumberjack-output.conf
+    - require_in:
+      - pkg: logstash_soft
+  
+  file.recurse:
+    - name: '{{ logstash_config_root }}l'
+    - source: salt://elk/files/filters
+    - require_in:
+      - pkg: logstash_soft    
+      
