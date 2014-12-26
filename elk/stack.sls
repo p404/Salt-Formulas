@@ -98,6 +98,8 @@ logstash_service:
   service.running:
     - name: logstash
     - enable: True
+    - watch:
+         - file: /etc/logstash/conf.d/*
 
 nginx_static_site:
   pkg.installed:
