@@ -12,15 +12,10 @@ If you have any questions about this salt formulas, please feel free to drop me 
 
 ###TODO
 - README.md update
-- Top.sls order configuration 'include'
 - User Managment state
 - Refactor htpasswd with the htpasswd state
 - IP Tables state support
 - Refactor and use pillars.
-- Generate the SSL cert ca self signed from salt module.
-  - Execution of this on a salt state
   
   
 ####Issues
-* Elk formula not working properly(random bug ordening states).
-* Sensu conf needs debugging.
