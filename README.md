@@ -10,4 +10,3 @@ This repository contains my own salt formulas and others collected from the web.
 
 If you have any questions about this salt formulas, please feel free to drop me an email at <paoc@sequel.ninja>
   
-####Issues
