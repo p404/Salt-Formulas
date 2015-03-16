@@ -20,9 +20,9 @@ ca_cert_g:
     - C: CL 
     - ST: RM
     - L: Santiago
-    - O: 4Talent
+    - O: ExampleOrg
     - OU: DevOps
-    - emailAddress: 'dev@4talent.cl'
+    - emailAddress: 'example@example.com'
     - cacert_path: '/etc/pki'
     - digest: sha256
 
@@ -34,9 +34,9 @@ cert_csr_g:
     - C: CL 
     - ST: RM
     - L: Santiago
-    - O: 4Talent
+    - O: ExampleOrg
     - OU: DevOps
-    - emailAddress: 'dev@4talent.cl'
+    - emailAddress: 'example@example.com'
     - cacert_path: '/etc/pki'
     - digest: sha256
     - require:
@@ -53,9 +53,9 @@ ca-signed_cert_g:
     - C: CL 
     - ST: RM
     - L: Santiago
-    - O: 4Talent
+    - O: ExampleOrg
     - OU: DevOps
-    - emailAddress: 'dev@4talent.cl'
+    - emailAddress: 'example@example.com'
     - cacert_path: '/etc/pki'
     - digest: sha256
     - require:
