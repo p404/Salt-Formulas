@@ -1,3 +1,7 @@
 [submodule "RVM-Ruby-formula"]
 	path = RVM-Ruby-formula
 	url = git@github.com:p404/RVM-Ruby-formula.git
+[submodule "Elastic-formula"]
+	path = Elastic-formula
+	url = git@github.com:p404/Elastic-formula.git
+
